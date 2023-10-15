@@ -45,7 +45,6 @@ class Product:
         }
         return pd.DataFrame(data)
 
-
 def generation_fingerprint(city):
     sess = Session()
     cookies = {
@@ -70,5 +69,5 @@ def generation_fingerprint(city):
 def get_sign(data):
     elements = [md5(str(i).encode()).hexdigest() for i in data.values()]
     elements.sort()
-    return md5(('ABCDEF00G' + ''.join(elements)).encode()).hexdigest()
+    return md5(('bnbgvfcdxz' + ''.join(elements)).encode()).hexdigest()
 

@@ -22,8 +22,7 @@ def fetch_city(city):
         try:
             response = sess.get('https://4lapy.ru/api/goods_list_cached/', params=params, cookies=cookies,
                                 headers=headers).json()
-            print(page_namber, end=" " )
-            # Создаем список словарей с необходимыми данными
+
             for item in response["data"]["goods"]:
                 if item["availability"] == 'В наличии':
                     products.append(Product.from_json(item, city))
@@ -35,12 +34,10 @@ def fetch_city(city):
             continue
     return Product.to_df(products)
 
-
 cities = {
     'Москва': ('0000073738', 55.755819, 37.617644),
     'Санкт-Петербург': ('0000103664', 59.939095, 30.315868)
 }
-
 def start():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         results = list(executor.map(fetch_city, cities))
